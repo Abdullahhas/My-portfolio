@@ -19,7 +19,7 @@ app.post('/send-email', async (req, res) => {
     service: 'Gmail', // Using Gmail as the service
     auth: {
       user: 'sp23-bse-007@cuilahore.edu.pk', // Your email
-      pass: 'fdsa@1102', // Replace with your email password or app password
+      pass: '', // Replace with your email password or app password
     },
   });
 
