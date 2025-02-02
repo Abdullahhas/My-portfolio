@@ -44,7 +44,6 @@ export const projects = [
     "Node",
     "Express",
     "MongoDB",
-    
     "SQL",
     "Git",
     "GitHub",
