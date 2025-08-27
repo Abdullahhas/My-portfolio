@@ -1,59 +1,89 @@
-import React from 'react'
-import { projects } from '../data'
-// import { CodeIcon } from "@heroicons/react/solid";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import { projects } from "../data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCode, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Projects = () => {
   return (
-  <section id="projects" className="text-gray-400 bg-gray-900 body-font">
-    <hr className='bg-red-600 mt-5 m-7' />
-    <div className='h-[800px] '>
-        <div className='h-[150px]  flex flex-col items-center justify-center w-full' >
-        {/* <CodeIcon className="mx-auto inline-block w-10 mb-4 text-gray-900" /> */}
-        <FontAwesomeIcon icon={faCode} className='h-10 mt-11 mb-5' />
-        <h1 className="sm:text-4xl text-3xl font-medium title-font mb-4 text-white">
-            Apps I've Built
-          </h1>
-          <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-            facilis repellat ab cupiditate alias vero aliquid obcaecati quisquam
-            fuga dolore.
-          </p>
+    <section id="projects" className="text-gray-400 bg-gray-900 body-font">
+      <hr className="bg-red-600 mt-5 m-7" />
 
-        </div>
+      {/* Section Header */}
+      <div className="text-center mb-12">
+        <FontAwesomeIcon icon={faCode} className="h-10 text-green-400 mb-5" />
+        <h1 className="sm:text-4xl text-3xl font-medium title-font text-white">
+          Apps I've Built
+        </h1>
+        <p className="mt-3 text-base text-gray-400">
+          Here are some of the projects I’ve built using different technologies.
+        </p>
+      </div>
 
-        
-        <div className="flex flex-wrap m-[100px] mt-16">
-          {projects.map((project) => (
+      {/* Projects Grid */}
+      <div className="container px-5 mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
+          >
+            {/* Project Image */}
             <a
-              href={project.link}
-              key={project.image}
-              className="sm:w-1/2 w-100 p-4">
-              <div className="flex relative">
-                <img
-                  alt="gallery"
-                  className="absolute inset-0 w-full h-full object-cover object-center"
-                  src={project.image}
-                />
-                <div className="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-                  <h2 className="tracking-widest text-sm title-font font-medium text-green-400 mb-1">
-                    {project.subtitle}
-                  </h2>
-                  <h1 className="title-font text-lg font-medium text-white mb-3">
-                    {project.title}
-                  </h1>
-                  <p className="leading-relaxed">{project.description}</p>
-                </div>
-              </div>
+              href={project.github || project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-48 object-cover hover:opacity-90 transition"
+              />
             </a>
-          ))}
-        </div>
-    
 
-    </div>
-  </section>
-  )
-}
+            {/* Project Content */}
+            <div className="p-5 flex flex-col flex-grow">
+              <h2 className="text-green-400 text-sm tracking-widest font-medium mb-2">
+                {project.subtitle}
+              </h2>
+              <h1 className="text-xl font-semibold text-white mb-3">
+                {project.title}
+              </h1>
+              <p className="leading-relaxed text-gray-300 mb-4 flex-grow">
+                {project.description}
+              </p>
 
-export default Projects
+              {/* Action Links pinned at bottom */}
+              <div className="flex items-center gap-6 mt-auto">
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-400 hover:underline flex items-center gap-2"
+                  >
+                    <FontAwesomeIcon icon={faExternalLinkAlt} /> Live Demo
+                  </a>
+                ) : (
+                  <span className="text-sm text-gray-500 flex items-center gap-2">
+                    <FontAwesomeIcon icon={faExternalLinkAlt} /> No Demo
+                  </span>
+                )}
+
+                <a
+                  href={project.github || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-300 hover:text-white flex items-center gap-2"
+                >
+                  <FontAwesomeIcon icon={faGithub} /> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
