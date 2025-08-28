@@ -14,7 +14,7 @@ const About = () => {
         Software Engineering Student
       </h1>
       <p className="text-gray-300 leading-relaxed mb-8">
-        I am currently in my 6th semester at COMSATS University, Lahore. I enjoy creating web applications using React, Node.js, Express, and MongoDB. I am also learning AI, Machine Learning, Deep Learning, and Neural Networks to build intelligent solutions. My goal is to combine web development and AI skills to create innovative, user-friendly applications that solve real-world problems.
+        I am currently in my 6th semester at COMSATS University Lahore. I enjoy creating web applications using React, Node.js, Express, and MongoDB. I am also learning AI, Machine Learning, Deep Learning, and Neural Networks to build intelligent solutions. My goal is to combine web development and AI skills to create innovative, user-friendly applications that solve real-world problems.
       </p>
       <div className="flex gap-4">
         <a

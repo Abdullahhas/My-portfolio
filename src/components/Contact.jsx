@@ -6,16 +6,22 @@ const Contact = () => {
   return (
     <section id="contact" className="bg-gray-900 text-gray-400 body-font">
       <div className="px-3 py-10 mx-auto">
+        {/* Section Header */}
         <div className="flex flex-col items-center mb-6">
           <AcademicCapIcon className="w-12 h-12 text-teal-500 mb-2" />
           <h1 className="text-4xl font-medium title-font text-white text-center">
             Contact me
           </h1>
+          {/* Tagline */}
+          <p className="mt-3 text-lg text-gray-400 text-center italic">
+            Let’s build something great together 🚀
+          </p>
         </div>
 
-        <div className="h-[850px] w-full mt-14 flex justify-between">
+        {/* Map + Contact Form side by side */}
+        <div className="h-[550px] w-full mt-14 flex justify-between">
+          {/* Google Map */}
           <div className="border-2 h-[500px] w-[50%] relative overflow-hidden rounded-md m-4 my-7">
-            {/* Google Map */}
             <iframe
               width="100%"
               height="100%"
@@ -53,7 +59,9 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <ContactForm /> 
+          <div className="h-[500px] w-[50%] m-4 my-7">
+            <ContactForm />
+          </div>
         </div>
       </div>
     </section>
