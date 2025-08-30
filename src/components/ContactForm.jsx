@@ -12,7 +12,11 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/contact", formData);
+      const res = await axios.post(
+  "https://my-portfolio-production-c923.up.railway.app/api/contact",
+  formData
+);
+
       setStatus({ msg: res.data.msg, type: "success" });
       setFormData({ name: "", email: "", message: "" });
 
