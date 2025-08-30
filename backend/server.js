@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
+// Health check route
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
 // POST route to send email
 app.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
@@ -21,10 +26,10 @@ app.post("/api/contact", async (req, res) => {
 
   try {
     const transporter = nodemailer.createTransport({
-      service: "Gmail",  
+      service: "Gmail",
       auth: {
-        user: process.env.EMAIL_USER, // your email
-        pass: process.env.EMAIL_PASS, // your email password or app password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
