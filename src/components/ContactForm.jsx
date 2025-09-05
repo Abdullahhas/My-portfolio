@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import emailjs from "@emailjs/browser";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -9,32 +9,35 @@ const ContactForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post(
-  "https://my-portfolio-production-c923.up.railway.app/api/contact",
-  formData
-);
 
-      setStatus({ msg: res.data.msg, type: "success" });
-      setFormData({ name: "", email: "", message: "" });
-
-      // clear after 4s
-      setTimeout(() => setStatus({ msg: "", type: "" }), 4000);
-    } catch (err) {
-      setStatus({ msg: err.response?.data?.msg || "Failed to send message", type: "error" });
-
-      // clear after 4s
-      setTimeout(() => setStatus({ msg: "", type: "" }), 4000);
-    }
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID, // ✅ use Vite env vars
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setStatus({ msg: "Message sent successfully!", type: "success" });
+          setFormData({ name: "", email: "", message: "" });
+          setTimeout(() => setStatus({ msg: "", type: "" }), 4000);
+        },
+        () => {
+          setStatus({ msg: "Failed to send message. Try again!", type: "error" });
+          setTimeout(() => setStatus({ msg: "", type: "" }), 4000);
+        }
+      );
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col w-full p-6 bg-gray-800 rounded-md"
-    >
+    <form onSubmit={handleSubmit} className="flex flex-col w-full p-6 bg-gray-800 rounded-md">
       <label className="mb-2 text-white">Name</label>
       <input
         type="text"
