@@ -21,11 +21,11 @@ const Projects = () => {
       </div>
 
       {/* Projects Grid */}
-      <div className="container px-5 mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+      <div className="container px-5 mx-auto max-w-5xl grid gap-8 sm:grid-cols-1 md:grid-cols-2">
         {projects.map((project, index) => (
           <div
             key={index}
-            className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
+            className="relative group bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col border border-gray-700 hover:border-green-400"
           >
             {/* Project Image */}
             <a
@@ -36,7 +36,7 @@ const Projects = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-48 object-cover hover:opacity-90 transition"
+                className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
             </a>
 
